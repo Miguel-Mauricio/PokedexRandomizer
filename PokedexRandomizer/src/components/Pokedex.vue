@@ -1,7 +1,9 @@
 <script setup>
+
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
+alert("To change pokemnons press the white circle");
 
 const pokemonImageSrc = ref('');
 const pokemonName = ref('');
@@ -11,6 +13,7 @@ const pokemonAbilities = ref('');
 
 const getPokemon = async () => {
     try {
+        
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1025');
         const data = response.data;
         const randomIndex = Math.floor(Math.random() * 1025);
@@ -68,14 +71,14 @@ onMounted(async () => {
     <title>Pokémon Randomizer</title>
 </head>
 <body>
-    <div class="pokemon-container">
+    <div class="pokemon-description", id="description">
         <img :src="pokemonImageSrc" alt="Random Pokémon">
         <h2>{{ pokemonName }}</h2>
         <p>HP: {{ pokemonHp }}</p>
         <p>Type: {{ pokemonType }}</p>
         <p>Abilities: {{ pokemonAbilities }}</p>
     </div>
-    <button id="randomizeButton" @click="fetchNewPokemon">Get Random Pokemon</button>
+    <button id="randomizeButton" @click="fetchNewPokemon"></button>
     
 </body>
 
@@ -83,32 +86,53 @@ onMounted(async () => {
 
 <style scoped>
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Press Start 2P', Arial, sans-serif;
     text-align: center;
     background-image: url('https://cdnb.artstation.com/p/assets/images/images/021/500/833/large/mario-aceituno-carcasa-pokedex-completa.jpg?1571920182');
-    background-size: cover; /* Change from 'auto' to 'cover' */
-    background-position: center; 
-    display: flex; /* Add this line to enable flexbox layout */
-    justify-content: center; /* Center children horizontally */
-    align-items: center; /* Center children vertically */
-    min-height: 100vh; /* Ensure body takes at least the full viewport height */
-    margin: 0; /* Remove default margins */
+    background-position: center;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    min-height: 98vh; 
+    margin: 0; 
+    padding: 0%;
 }
 
-.pokemon-container {
-    margin-top: 50px;
+#description {
+    align-items: center;
+    width: 100%;
+    height: auto; 
+    max-width: 600px; 
+    padding: 20px; 
+    color: #800101;
+    margin: auto;
+    background-image: url('https://img.freepik.com/free-vector/gradient-zoom-effect-blue-background_23-2149762303.jpg');
 }
 
-#pokemon-image {
-    width: 200px;
-    height: auto;
+
+
+@media (max-width: 768px) {
+   .pokemon-container {
+        width: 90%; 
+    }
 }
 
 #randomizeButton {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
+    padding: 50px 50px; 
+    left:100%;
+    top: 50%;
     cursor: pointer;
+    border-radius: 50%; 
+    transition: transform 0.3s ease-in-out; 
+    
+}
+
+#randomizeButton:hover {
+    transform: scale(1.1); 
+    background-image: url('https://icon-library.com/images/small-pokeball-icon/small-pokeball-icon-4.jpg'); 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 </style>
+
