@@ -71,7 +71,7 @@ onMounted(async () => {
     <title>Pokémon Randomizer</title>
 </head>
 <body>
-    <div class="pokemon-description", id="description">
+    <div class="pokemon-description" id="description">
         <img :src="pokemonImageSrc" alt="Random Pokémon">
         <h2>{{ pokemonName }}</h2>
         <p>HP: {{ pokemonHp }}</p>
